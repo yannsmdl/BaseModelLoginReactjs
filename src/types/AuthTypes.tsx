@@ -5,7 +5,6 @@ export type User = {
 }
 
 export type UserDecoded = {
-    iss: string
     sub: string
     email: string
     username: string
