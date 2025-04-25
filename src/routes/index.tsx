@@ -11,10 +11,10 @@ function Routes() {
 
     const redirectPath = () => {
         if (user?.userDecoded.roles === "Admin") {
-          return <DashboardManager/>
+          return <DashboardAdmin/>
         }
         else if (user?.userDecoded.roles === "Manager") {
-          return <DashboardAdmin/>
+          return <DashboardManager/>
         }
         else if (user?.token) {
           return <Dashboard/>

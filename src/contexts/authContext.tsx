@@ -3,6 +3,7 @@ import ConnectLogin from "../apis/login";
 import { useNavigate } from "react-router-dom";
 import { AuthContextProps, ProviderProps, User, UserDecoded } from "../types/AuthTypes";
 import * as jwt_decode from 'jwt-decode';
+import toast from "react-hot-toast";
 
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -28,16 +29,19 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     const navigate = useNavigate();
 
     async function login(email: string, password: string) {
-        const response = await api.login({ email, password });
-        if (response.status !== 200) {
-            throw new Error("Login failed");
+        try {
+            const response = await api.login({ email, password });
+            const data: User = response.data;
+            const tokenData: UserDecoded = jwt_decode.jwtDecode(data.token);
+            data.userDecoded = tokenData;
+            setUser(data);
+            localStorage.setItem("user", JSON.stringify(data));
+            navigate(rolePathMap[data?.userDecoded.roles ?? "/"] ?? "/");
+        } catch (error) {
+            console.error("Error in login:", error);
+            toast.error("Login ou senha inválidos");
+            return;
         }
-        const data: User = response.data;
-        const tokenData: UserDecoded = jwt_decode.jwtDecode(data.token);
-        data.userDecoded = tokenData;
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate(rolePathMap[data?.userDecoded.roles ?? "/"] ?? "/")
     }
     async function logout() {
         await api.logout(user?.token || "");

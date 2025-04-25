@@ -1,13 +1,11 @@
-import useAuth from "../../hooks/useAuth";
+import { Header } from "../../components/header";
 
 function DashboardAdmin() {
-    const { logout, user } = useAuth();
     return(
-      <div>
-        <h1 className="text-3xl fond-bold text-red-500">Bem vindo {user?.userDecoded.username}, seu perfil é {user?.userDecoded.roles}</h1>
-        <button onClick={logout}>Sair</button>
+      <div className="min-h-screen bg-[var(--color-primary)] flex flex-col items-start justify-start">
+        <Header/>
+        <h1 className="text-2xl fond-bold text-white">Bem Vindo a tela do administrador</h1>
       </div>
-      
     )
   }
   
