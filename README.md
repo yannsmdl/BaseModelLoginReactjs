@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# ReactJS Auth Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação front-end desenvolvida em **ReactJS com TypeScript**, consumindo uma API de autenticação baseada no projeto [BaseModelDotnet](https://github.com/yannsmdl/BaseModelDotnet).
 
-Currently, two official plugins are available:
+## 🔧 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **ReactJS**
+- **TypeScript**
+- **Vite**
+- **Hooks** (como `useState`, `useEffect`, `useContext`)
+- **Context API** para gerenciamento de autenticação
+- **JWT Decode** para interpretação do token
+- **React Router** para navegação e redirecionamento
 
-## Expanding the ESLint configuration
+## 🔐 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Autenticação via API (login/logout)
+- Armazenamento do token JWT e informações do usuário no `localStorage`
+- Redirecionamento automático com base na **Role** do usuário
+- Roteamento protegido com controle de acesso
+- Separação de dashboards conforme permissões
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🧭 Páginas Disponíveis
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+| Página             | Acesso                                |
+|--------------------|----------------------------------------|
+| `/`                | Login                                  |
+| `/dashboard`       | Dashboard de **usuário comum**         |
+| `/dashboard-manager` | Dashboard de **usuário gerencial**    |
+| `/dashboard-admin` | Dashboard de **usuário administrador** |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔁 Redirecionamento por Role
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Após o login, o usuário é redirecionado automaticamente para a rota correspondente com base na sua role, recebida no token JWT:
+
+- `Admin` → `/dashboard-admin`
+- `Manager` → `/dashboard-manager`
+- `User` ou qualquer outro → `/dashboard`
+
+## 🚀 Como rodar o projeto
+
+```bash
+# Instale as dependências
+npm install
+
+# Rode o projeto
+npm run dev
