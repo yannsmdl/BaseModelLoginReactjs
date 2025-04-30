@@ -1,16 +1,20 @@
 import { createContext, useState, useEffect } from "react";
 import ConnectLogin from "../apis/login";
 import { useNavigate } from "react-router-dom";
-import { AuthContextProps, ProviderProps, User, UserDecoded } from "../types/AuthTypes";
+import { AuthContextProps, User, UserDecoded } from "../types/AuthTypes";
 import * as jwt_decode from 'jwt-decode';
 import toast from "react-hot-toast";
+import { ProviderProps } from "../types/GlobalTypes";
+import useTenant from "../hooks/useTenant";
 
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
-    const api = new ConnectLogin();
+    
+    const { tenant } = useTenant();
+    const api = new ConnectLogin(tenant?.url || '');
 
     const rolePathMap: Record<string, string> = {
         Admin: "/dashboard-admin",

@@ -16,7 +16,3 @@ export type AuthContextProps = {
     login: (email: string, password: string) => Promise<void>
     logout: () => void
 }
-
-export type ProviderProps = {
-    children: React.ReactNode
-}

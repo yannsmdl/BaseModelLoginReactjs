@@ -1,8 +1,8 @@
 import ApiService from "../index";
 
 class ConnectLogin extends ApiService{
-    constructor(){
-        super('/Token')
+    constructor(tenantUrl: string){
+        super('/Token', null, tenantUrl)
     }
     
     async login(cred: object){

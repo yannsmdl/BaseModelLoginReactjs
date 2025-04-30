@@ -2,14 +2,17 @@ import { BrowserRouter } from "react-router-dom"
 import Routes from "./routes"
 import { AuthProvider } from "./contexts/authContext"
 import { Toaster } from "react-hot-toast"
+import { TenantProvider } from "./contexts/tenantContext"
 
 function App() {
   return(
     <BrowserRouter>
-      <AuthProvider>
-          <Toaster/>
-          <Routes />
-      </AuthProvider>
+      <TenantProvider>
+        <AuthProvider>
+            <Toaster/>
+            <Routes />
+        </AuthProvider>
+      </TenantProvider>
     </BrowserRouter>
   )
 }
