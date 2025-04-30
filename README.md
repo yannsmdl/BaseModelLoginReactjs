@@ -1,6 +1,6 @@
 # ReactJS ECommerce
 
-Este projeto é uma aplicação front-end desenvolvida em **ReactJS com TypeScript**, consumindo uma API de autenticação baseada no projeto [BaseModelDotnet](https://github.com/yannsmdl/BaseModelDotnet).
+Este projeto é uma aplicação front-end desenvolvida em **ReactJS com TypeScript**, consumindo uma API de autenticação com Multitenancy baseada no projeto [BaseModelDotnet](https://github.com/yannsmdl/BaseModelDotnet).
 
 ## 🔧 Tecnologias Utilizadas
 
