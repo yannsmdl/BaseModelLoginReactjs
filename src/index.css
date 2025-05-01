@@ -2,7 +2,8 @@
 @import "tailwindcss";
 
 :root {
-    --color-primary: #F2F2f2;
+    --color-primary: #ededed;
+    --color-secundary: rgb(197, 197, 197);
     --color-input-background: inherit;
     --color-input-text: #062C45;
     --color-hover-border-input: #B56B23;

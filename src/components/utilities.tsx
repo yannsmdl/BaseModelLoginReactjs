@@ -1,8 +1,5 @@
-import React, { InputHTMLAttributes, SelectHTMLAttributes } from "react";
+import { ButtonProps, InputProps, SelectProps } from "../intefaces/Utilities";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
-}
 
 export function Input({
   type,
@@ -22,9 +19,26 @@ export function Input({
   );
 }
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  className?: string;
+
+export function Button({
+  onClick,
+  className = "",
+  type="button",
+  children,
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      type={type}
+      className={`bg-[var(--color-input-background)] hover:bg-gray-100 text-[var(--color-input-text)] font-semibold py-2 px-4 border border-gray-400 hover:border-[var(--color-hover-border-input)] rounded shadow ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }
+
 
 export function Select({
   className = "",

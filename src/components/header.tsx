@@ -4,7 +4,7 @@ export function Header() {
   const { user, logout } = useAuth();
 
   return (
-    <header className="bg-[var(--color-primary)] border-b border-black sticky top-0 z-10 w-full">
+    <header className="bg-[var(--color-primary)] border-b-2 border-[var(--color-hover-border-input)] sticky top-0 z-10 w-full">
         <div className="w-full px-4 py-3 flex justify-between items-center flex-row-reverse">
             <div className="flex items-center gap-6">
                 <div className="text-right hidden sm:block">
@@ -18,7 +18,7 @@ export function Header() {
 
                 <button
                     onClick={logout}
-                    className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md text-sm transition-colors flex items-center"
+                    className="px-3 py-1 bg-bg-[var(--color-primary)] hover:bg-gray-200 text-gray-800 rounded-md text-sm transition-colors flex items-center"
                 >
                     <span className="hidden md:inline">Sair</span>
                     <svg

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { Input } from "../../components/Utilities";
+import { Button, Input } from "../../components/Utilities";
 import logo from '../../assets/logo.png';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
@@ -14,16 +16,24 @@ function Login() {
       }
   }
 
+  async function handleLogin(){
+    login(userName, password)
+  }
+
+  async function handleRegister(){
+    navigate("/register")
+  }
+
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col items-center justify-center">
       <div className="mb-8">
         <img src={logo} alt="Logo" className="h-50" />
       </div>
 
-      <div className="w-full max-w-xs flex flex-col gap-4">
+      <div className="w-full max-w-md flex flex-col gap-4">
         <Input
           name="email"
-          placeholder="Login"
+          placeholder="E-mail"
           type="email"
           value={userName}
           onKeyPress={handleKeyPress}
@@ -37,6 +47,14 @@ function Login() {
           onKeyPress={handleKeyPress}
           onChange={(e) => setPassword(e.target.value)}
         />
+      </div>
+      <div className="w-full max-w-md flex justify-center gap-x-4 mt-6">
+        <Button onClick={handleLogin}>
+          Login
+        </Button>
+        <Button onClick={handleRegister}>
+          Cadastrar
+        </Button>
       </div>
     </div>
   );

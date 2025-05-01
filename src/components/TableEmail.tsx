@@ -1,5 +1,5 @@
 import { useFieldArray } from "react-hook-form";
-import { Input } from "./Utilities";
+import { Button, Input } from "./Utilities";
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 
@@ -15,16 +15,14 @@ export default function TableEmail({ control, register }) {
       });
 
     return (
-        <div className="border p-4 flex-1">
+        <div className="border p-4 border-[var(--color-hover-border-input)] flex-1 bg-[var(--color-primary)] rounded-md">
             <div className="flex items-center justify-between mb-2">
                 <h2 className="font-semibold text-[var(--color-input-text)]">Emails</h2>
-                <button
-                type="button"
+                <Button
                 onClick={() => appendEmail({ address: "", main: false })}
-                className="btn"
                 >
                 +
-                </button>
+                </Button>
             </div>
 
             {emailFields.map((field, index) => (
