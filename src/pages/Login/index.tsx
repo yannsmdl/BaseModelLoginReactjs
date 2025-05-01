@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import Input from "../../components/utilities";
+import { Input } from "../../components/Utilities";
 import logo from '../../assets/logo.png';
 
 function Login() {

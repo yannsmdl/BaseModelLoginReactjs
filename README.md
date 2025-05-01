@@ -23,18 +23,13 @@ Este projeto é uma aplicação front-end desenvolvida em **ReactJS com TypeScri
 
 ## 🧭 Páginas Disponíveis
 
-| Página             | Acesso                                |
+| Página             | Acesso                                 |
 |--------------------|----------------------------------------|
 | `/login`           | Login                                  |
 | `/dashboard`       | Dashboard de **usuário comum**         |
-| `/dashboard-manager` | Dashboard de **usuário gerencial**    |
+| `/dashboard-manager` | Dashboard de **usuário gerencial**   |
 | `/dashboard-admin` | Dashboard de **usuário administrador** |
-
-## 🧭 Páginas em desenvolvimento
-
-| Página             | Acesso                                |
-|--------------------|---------------------------------------|
-| `/cadastrar-usuario`| Cadastrar usuário                    | -> Deslogado
+| `/register`        | Criar usuário                          |
 
 
 ## 🔁 Redirecionamento por Role

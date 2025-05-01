@@ -8,10 +8,10 @@ export function Header() {
         <div className="w-full px-4 py-3 flex justify-between items-center flex-row-reverse">
             <div className="flex items-center gap-6">
                 <div className="text-right hidden sm:block">
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-[var(--color-input-text)]">
                     {user?.userDecoded?.username || "Usuário"}
                     </p>
-                    <p className="text-xs text-white capitalize">
+                    <p className="text-xs text-[var(--color-input-text)] capitalize">
                     {user?.userDecoded?.roles?.toLowerCase() || "usuário"}
                     </p>
                 </div>
