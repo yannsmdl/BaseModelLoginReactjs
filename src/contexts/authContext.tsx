@@ -32,6 +32,48 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     }, []);
     const navigate = useNavigate();
 
+    async function forgotPassword(email: string) {
+        try {
+            await api.forgotPassword({ email });
+            return
+            
+        } catch (error) {
+            console.error("Error in login:", error);
+            toast.error("Login ou senha inválidos");
+            return;
+        }
+    }
+
+    async function validTokenForgotPassword(token: string, email: string) {
+        try {
+            const response = await api.validForgotPassword({ token, email });
+            if (response.status !== 200) {
+                throw new Error("Token inválido");
+            }
+            return;
+        } catch (error) {
+            console.error("Error in validTokenForgotPassword:", error);
+            toast.error("Token inválido ou expirado");
+            navigate("/");
+            return;
+        }
+    }
+
+    async function resetPassword(token: string, email: string, newPassword: string) {
+        try {
+            const response = await api.resetPassword({ email, token, newPassword });
+            if (response.status !== 200) {
+                throw new Error("Erro ao redefinir a senha");
+            }
+            toast.success("Senha redefinida com sucesso");
+            navigate("/");
+        } catch (error) {
+            console.error("Error in login:", error);
+            toast.error("Erro ao redefinir a senha");
+            return;
+        }
+    }
+
     async function login(email: string, password: string) {
         try {
             const response = await api.login({ email, password });
@@ -55,7 +97,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, forgotPassword , validTokenForgotPassword , resetPassword}}>
             {children}
         </AuthContext.Provider>
     );

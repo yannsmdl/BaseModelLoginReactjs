@@ -1,14 +1,14 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { Button, Input } from "../../components/Utilities";
+import { ButtonNoBorder, Input } from "../../components/Utilities";
 import logo from '../../assets/logo.png';
-import { useNavigate } from "react-router-dom";
+import ModalEsqueciSenha from "../../components/ModalEsqueciSenha";
 
 function Login() {
-  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   async function handleKeyPress(event: React.KeyboardEvent) {
       if(event.charCode === 13){
@@ -20,14 +20,14 @@ function Login() {
     login(userName, password)
   }
 
-  async function handleRegister(){
-    navigate("/register")
+  const abrirModal = () =>{
+      setIsOpen(!isOpen)
   }
 
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col items-center justify-center">
       <div className="mb-8">
-        <img src={logo} alt="Logo" className="h-50" />
+        <img src={logo} alt="Logo" className="h-15" />
       </div>
 
       <div className="w-full max-w-md flex flex-col gap-4">
@@ -49,13 +49,14 @@ function Login() {
         />
       </div>
       <div className="w-full max-w-md flex justify-center gap-x-4 mt-6">
-        <Button onClick={handleLogin}>
+        <ButtonNoBorder onClick={handleLogin}>
           Login
-        </Button>
-        <Button onClick={handleRegister}>
-          Cadastrar
-        </Button>
+        </ButtonNoBorder>
+        <ButtonNoBorder  onClick={abrirModal}>
+          Esqueceu a senha?
+        </ButtonNoBorder>
       </div>
+      <ModalEsqueciSenha isOpen={isOpen} setIsOpen={setIsOpen}/>
     </div>
   );
   }
