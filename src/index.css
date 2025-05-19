@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-    --color-primary: #0F2229;
-    --color-secundary: #1A2F37;
+    --color-primary: #ededed;
+    --color-secundary: rgb(197, 197, 197);
     --color-input-background: inherit;
-    --color-input-text: #FFFFFF;
-    --color-hover-border-input: #9AEBA3;
+    --color-input-text: #062C45;
+    --color-hover-border-input: #B56B23;
 }
 
 .input {
@@ -14,7 +14,7 @@
 }
 
 .btn {
-  @apply bg-blue-600 text-white p-2 rounded;
+  @apply bg-blue-600 text-white p-2 rounded hover:bg-blue-700;
 }
 
 /* Camada base customizada */
