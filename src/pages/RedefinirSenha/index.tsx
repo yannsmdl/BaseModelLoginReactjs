@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.png';
 import { Button, Input } from '../../components/Utilities';
 import toast from 'react-hot-toast';
@@ -14,13 +14,8 @@ export default function RedefinirSenha() {
     const token = searchParams.get('token') || '';
     const email = searchParams.get('email') || '';
 
-    const hasValidatedRef = useRef(false);
-
     useEffect(() => {
-    if (!hasValidatedRef.current) {
-        hasValidatedRef.current = true;
         validTokenForgotPassword(token, email);
-    }
     }, [token, email]);
 
     async function handleKeyPress(event: React.KeyboardEvent) {
